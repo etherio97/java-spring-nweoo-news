@@ -5,24 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.nweoo.news.model.Article;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Service
 public class NewsServiceImp {
-    private static Logger log = LoggerFactory.getLogger(NewsServiceImp.class);
 
     public List<Article> getArticles() throws IOException {
         List<Article> articles = new ArrayList<>();
