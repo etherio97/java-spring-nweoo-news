@@ -21,7 +21,7 @@ public class NewsServiceImp {
     public List<Article> getArticles(Integer limit, Optional<String> paging) throws IOException {
         List<Article> articles = new ArrayList<>();
         UriComponentsBuilder uri = UriComponentsBuilder.fromHttpUrl("https://api.nweoo.com/news/articles").queryParam("limit", limit);
-        if (! paging) uri.queryParam("paging", paging);
+        if (paging.isPresent()) uri.queryParam("paging", paging);
         try {
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<String> response = restTemplate.getForEntity(uri.encode().toUriString(), String.class);
