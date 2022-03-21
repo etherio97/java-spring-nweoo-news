@@ -6,5 +6,5 @@ import java.util.List;
 import com.nweoo.news.model.Article;
 
 public interface NewsService {
-    public List<Article> getArticles() throws IOException;
+    public List<Article> getArticles(Integer limit, Optional<String> paging) throws IOException;
 }
