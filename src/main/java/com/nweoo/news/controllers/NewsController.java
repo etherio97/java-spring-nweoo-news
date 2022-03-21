@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
@@ -20,7 +21,7 @@ public class NewsController {
     private NewsServiceImp newsService;
 
     @GetMapping("articles")
-    public List<Article> getArticles() throws IOException {
-        return newsService.getArticles();
+    public List<Article> getArticles(@RequestParam(defaultValue=15) Integer limit, @RequestParam Optional<String> paging) throws IOException {
+        return newsService.getArticles(limit, paging);
     }
 }
