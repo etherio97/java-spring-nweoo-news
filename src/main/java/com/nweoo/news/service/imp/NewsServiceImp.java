@@ -12,16 +12,18 @@ import com.nweoo.news.model.Article;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class NewsServiceImp {
 
-    public List<Article> getArticles() throws IOException {
+    public List<Article> getArticles(Integer limit, Optional<String> paging) throws IOException {
         List<Article> articles = new ArrayList<>();
-        String url = "https://api.nweoo.com/news/articles";
+        UriComponentsBuilder uri = UriComponentsBuilder.fromHttpUrl("https://api.nweoo.com/news/articles").queryParam("limit", limit);
+        if (! paging) uri.queryParam("paging", paging);
         try {
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+            ResponseEntity<String> response = restTemplate.getForEntity(uri.encode().toUriString(), String.class);
             ObjectMapper mapper = new ObjectMapper();
             ObjectReader reader = mapper.readerFor(new TypeReference<List<Article>>() {
             });
