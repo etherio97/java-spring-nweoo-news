@@ -23,6 +23,6 @@ public class NewsController {
 
     @GetMapping("articles")
     public List<Article> getArticles(@RequestParam(defaultValue=15) Integer limit, @RequestParam Optional<String> paging) throws IOException {
-        return newsService.getArticles(limit, paging);
+        return newsService.getArticles(limit, Optional.isNullable(paging));
     }
 }
