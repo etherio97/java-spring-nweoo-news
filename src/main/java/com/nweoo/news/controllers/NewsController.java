@@ -22,7 +22,7 @@ public class NewsController {
     private NewsServiceImp newsService;
 
     @GetMapping("articles")
-    public List<Article> getArticles(@RequestParam(defaultValue=15) Integer limit, @RequestParam paging) throws IOException {
+    public List<Article> getArticles(@RequestParam(defaultValue=15) Integer limit, @RequestParam(defaultValue="") String paging) throws IOException {
         return newsService.getArticles(limit, Optional.isNullable(paging));
     }
 }
